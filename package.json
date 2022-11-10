@@ -1,6 +1,6 @@
 {
   "name": "@akrdevtech/lib-mongodb-with-migrate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library for mongodb client",
   "main": "dist/index.js",
   "scripts": {

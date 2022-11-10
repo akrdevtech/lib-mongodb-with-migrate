@@ -13,10 +13,8 @@ export class BaseMongoClient {
     this._dbUri = mongoConfig.uri;
     this._dbName = mongoConfig.dbName;
     this._options = {
-      useNewUrlParser: true,
-      poolSize,
+      minPoolSize: poolSize,
       tls: mongoConfig.ssl,
-      useUnifiedTopology: true,
       connectTimeoutMS: 10000,
       socketTimeoutMS: 10000,
     };
@@ -56,7 +54,7 @@ export class BaseMongoClient {
   }
 
   public async openDbConnection(): Promise<void> {
-    if (_client && _client.isConnected() && _dbInstance) {
+    if (_client && _dbInstance) {
       return;
     }
 
@@ -75,7 +73,7 @@ export class BaseMongoClient {
   }
 
   public async closeDbConnection(): Promise<void> {
-    if (!_client || !_client.isConnected()) {
+    if (!_client) {
       return;
     }
 
@@ -91,7 +89,7 @@ export class BaseMongoClient {
 
   public async ping(): Promise<void> {
     await this.getDb();
-    if (!_client || !_client.isConnected()) {
+    if (!_client) {
       throw new Error('Client missing or not configured');
     }
     await _client.db('admin').command({ ping: 1 });
