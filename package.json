@@ -26,8 +26,8 @@
     "dist/**/*"
   ],
   "dependencies": {
-    "migrate-mongo": "^9.0.0",
-    "mongodb": "^4.11.0"
+    "migrate-mongo": "^10.0.0",
+    "mongodb": "^6.0.0"
   },
   "devDependencies": {
     "@types/jest": "^29.2.2",
